@@ -53,10 +53,10 @@ describe('event_stream', function() {
 					return Promise.resolve([]).nodeify(callback);
 				}
 			};
-/*			var stream = new EventStream(mockPartition, '11');
+			var stream = new EventStream(mockPartition, '11');
 			stream.append({event:'123'});
 			stream.commit(uuid());
-*/			
+			
 			mockPartition.called.should.be.true;
 			done();
 		});

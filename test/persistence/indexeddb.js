@@ -10,14 +10,25 @@ var Event = EventStore.Event;
 var PersistenceConcurrencyError = EventStore.ConcurrencyError;
 var PersistenceDuplicateCommitError = EventStore.DuplicateCommitError;
 
-/*
-describe('inmemory_persistence', function() {
+var sqlite3 = require('sqlite3').verbose();
+var indexeddbjs = require('indexeddb-js');
+
+
+var getDb = function() {
+	var engine    = new sqlite3.Database(':memory:');
+	var scope     = indexeddbjs.makeScope('sqlite3', engine);
+	return scope.indexedDB;
+}
+
+
+describe('indexeddb_persistence', function() {
 	describe('#commit', function() {
 
 		it('should accept a commit and store it', function(done) {
-			var store = new Store(new LocalDb());
+			var store = new Store(getDb());
 			store.openPartition('1').then(function(partition)
 				{
+					console.log(Event);
 					var events = [new Event(uuid(), 'type1',{test:11})];
 					var commit = new Commit(uuid(), 'master', '1', 0, events);
 					partition.append(commit).then(function(){return partition.queryAll()}).then(function(x){
@@ -30,7 +41,7 @@ describe('inmemory_persistence', function() {
 		});
 
 		it('commit in one stream is not visible in other', function(done) {
-			var store = new Store(new LocalDb());
+			var store = new Store(getDb());
 			store.openPartition('1').then(function(partition) {
 				var events = [new Event(uuid(), 'type1',{test:11})];
 				var commit = new Commit(uuid(), 'master', '1', 0, events);
@@ -52,7 +63,7 @@ describe('inmemory_persistence', function() {
 		});
 
 		it('two commits in one stream are visible', function() {
-			var store = new Store(new LocalDb());
+			var store = new Store(getDb());
 			store.openPartition('1').then(function(partition) {
 				var events = [new Event(uuid(), 'type1',{test:11})];
 				var commit = new Commit(uuid(), 'master', '1', 0, events);
@@ -68,7 +79,7 @@ describe('inmemory_persistence', function() {
 	});
 	describe('#concurrency', function() {
 		it('same commit sequence twice should throw', function(done) {
-			var store = new Store(new LocalDb());
+			var store = new Store(getDb());
 			store.openPartition('1').then(function(partition) {
 				var events = [new Event(uuid(), 'type1',{test:11})];
 				var commit = new Commit(uuid(), 'master', '1', 0, events);
@@ -86,7 +97,7 @@ describe('inmemory_persistence', function() {
 	});
 	describe('#duplicateEvents', function() {
 		it('same commit twice should throw', function(done) {
-			var store = new Store(new LocalDb());
+			var store = new Store(getDb());
 			store.openPartition('1').then(function(partition) {
 				var events = [new Event(uuid(), 'type1',{test:11})];
 				var commit = new Commit(uuid(), 'master', '1', 0, events);
@@ -105,14 +116,14 @@ describe('inmemory_persistence', function() {
 	});
 	describe('#partition', function() {
 		it('getting the same partition twice should return same instance', function(done) {
-			var store = new Store(new LocalDb());
+			var store = new Store(getDb());
 			Promise.join(store.openPartition('1'), store.openPartition('1'), function(p1,p2) {
 				p1.should.equal(p2);
 				done();
 			});
 		});
 		it('not indicating partition name should give master partition', function(done) {
-			var store = new Store(new LocalDb());
+			var store = new Store(getDb());
 			Promise.join(store.openPartition(), store.openPartition('master'), function(p1,p2) {
 				p1.should.equal(p2);
 				done();
@@ -120,4 +131,3 @@ describe('inmemory_persistence', function() {
 		});		
 	});
 });
-*/
