@@ -7,14 +7,7 @@ var EventStream = require('tapeworm').EventStream;
 
 var IdbPersistenceStore = require('..');
 
-var sqlite3 = require('sqlite3');
-var indexeddbjs = require('indexeddb-js');
-
-var getDb = function() {
-	var engine    = new sqlite3.Database(':memory:');
-	var scope     = indexeddbjs.makeScope('sqlite3', engine);
-	return scope.indexedDB;
-}
+var getDb = require('./util');
 
 describe('event_stream', function() {
 	describe('#openStream', function(done) {

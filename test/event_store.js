@@ -4,14 +4,7 @@ var Promise = require('bluebird');
 var EventStore = require('tapeworm');
 var IdbPersistenceStore = require('..');
 
-var sqlite3 = require('sqlite3').verbose();
-var indexeddbjs = require('indexeddb-js');
-
-var getDb = function() {
-	var engine    = new sqlite3.Database(':memory:');
-	var scope     = indexeddbjs.makeScope('sqlite3', engine);
-	return scope.indexedDB;
-}
+var getDb = require('./util');
 
 
 describe('event_store', function() {
