@@ -8,10 +8,11 @@
   },
   "scripts": {
     "test": "mocha test --recursive",
+    "test.watch": "mocha test --watch --recursive",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive test -u exports -R spec",
     "coverage-start": "istanbul cover node_modules/mocha/bin/_mocha test --recursive -- -u exports -R spec && start coverage/lcov-report/index.html",
     "jshint": "jshint ./lib",
-    "mochify": "mochify --watch",    
+    "mochify": "mochify --watch",
     "jscs": "jscs -p google ./lib"
   },
   "repository": {
@@ -26,13 +27,13 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "indexeddb-js": "0.0.14",
+    "fake-indexeddb": "^2.0.2",
     "istanbul": "^0.3.2",
     "jshint": "^2.5.10",
     "mocha": "^2.0.1",
     "mochify": "^2.9.0",
     "should": "^4.1.0",
-    "sqlite3": "^3.0.8"
+    "tapeworm": "^0.1.5"
   },
   "dependencies": {
     "bluebird": "^2.5.2",

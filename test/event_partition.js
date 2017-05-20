@@ -11,7 +11,7 @@ var Commit = EventStore.Commit;
 
 describe('Partition', function() {
 	describe('#append', function(done) {
-		it('should return commit if added', function(done) {
+		it.only('should return commit if added', function(done) {
 			var es = new EventStore(new IdbPersistenceStore(getDb()));
 			es.openPartition('location').then(function(partition) {
 				partition.append(new Commit('1', 'location', '1', 0, [])).then(function(c) {
@@ -64,7 +64,7 @@ describe('Partition', function() {
 			}).catch(function(err) {
 				done(err);
 			});
-		});	
+		});
 	});
 	describe('#_applyCommitHeader', function() {
 		it('should add to commit ', function(done) {
@@ -88,12 +88,12 @@ describe('Partition', function() {
 				return partition.append([commit, new Commit('2', 'location', '1', 1, [])]).then(function(c) {
 					return partition._applyCommitHeader("ID MISSING", {authorative:true}).then(function(commit) {
 						done(new Error("Unreachable code"));
-					
+
 					});
 				});
 			}).catch(function(err) {
 				done();
 			});
-		});	
+		});
 	});
 });

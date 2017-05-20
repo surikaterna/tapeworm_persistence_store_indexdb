@@ -37,7 +37,7 @@ describe('event_stream', function() {
 
 		it('should call commit on partition', function(done) {
 			var mockPartition = {
-				called:false, 
+				called:false,
 				append:function(commit, callback) {
 					this.called=true;
 					return Promise.resolve().nodeify(callback);
@@ -49,7 +49,7 @@ describe('event_stream', function() {
 			var stream = new EventStream(mockPartition, '11');
 			stream.append({event:'123'});
 			stream.commit(uuid());
-			
+
 			mockPartition.called.should.be.true;
 			done();
 		});
@@ -63,7 +63,7 @@ describe('event_stream', function() {
 			}).catch(function(err) {
 				done(err);
 			});
-		});		
+		});
 		it('should move uncommitted events to committed on commit', function(done) {
 			var es = new EventStore(new IdbPersistenceStore(getDb()));
 			var stream;
@@ -80,7 +80,7 @@ describe('event_stream', function() {
 			}).catch(function(err) {
 				done(err);
 			});
-		});		
+		});
 		it('two events becomes one commit', function(done) {
 			var es = new EventStore(new IdbPersistenceStore(getDb()));
 			var stream;
@@ -98,7 +98,7 @@ describe('event_stream', function() {
 			}).catch(function(err) {
 				done(err);
 			});
-		});		
+		});
 	});
 });
 
