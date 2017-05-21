@@ -3,6 +3,7 @@ var Promise = require('bluebird');
 
 var EventStore = require('tapeworm');
 var IdbPersistenceStore = require('..');
+global.IDBKeyRange = require("fake-indexeddb/lib/FDBKeyRange");
 
 var getDb = require('./util');
 

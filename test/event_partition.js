@@ -64,7 +64,7 @@ describe('Partition', function() {
 			}).catch(function(err) {
 				done(err);
 			});
-		});	
+		});
 	});
 	describe('#_applyCommitHeader', function() {
 		it('should add to commit ', function(done) {
@@ -88,12 +88,12 @@ describe('Partition', function() {
 				return partition.append([commit, new Commit('2', 'location', '1', 1, [])]).then(function(c) {
 					return partition._applyCommitHeader("ID MISSING", {authorative:true}).then(function(commit) {
 						done(new Error("Unreachable code"));
-					
+
 					});
 				});
 			}).catch(function(err) {
 				done();
 			});
-		});	
+		});
 	});
 });
