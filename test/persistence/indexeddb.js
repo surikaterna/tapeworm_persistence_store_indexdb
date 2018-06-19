@@ -14,7 +14,6 @@ var getDb = require('../util');
 
 describe('indexeddb_persistence', function() {
 	describe('#commit', function() {
-
 		it('should accept a commit and store it', function(done) {
 			var store = new Store(getDb());
 			store.openPartition('1').then(function(partition)
