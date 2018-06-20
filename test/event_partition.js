@@ -10,7 +10,7 @@ var Commit = EventStore.Commit;
 
 
 describe('Partition', function() {
-	describe('#append', function(done) {
+	describe('#append', function() {
 		it('should return commit if added', function(done) {
 			var es = new EventStore(new IdbPersistenceStore(getDb()));
 			es.openPartition('location').then(function(partition) {
