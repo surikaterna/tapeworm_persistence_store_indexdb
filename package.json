@@ -34,8 +34,7 @@
     "mochify": "^2.19.0",
     "should": "^4.1.0",
     "tapeworm": "^0.1.5",
-    "slf": "^1.0.0",
-    "slf-debug": "^0.2.0"
+    "slf": "^1.0.0"
   },
   "dependencies": {
     "bluebird": "^2.5.2",
@@ -43,7 +42,6 @@
     "node-uuid": "^1.4.8"
   },
   "peerDependencies": {
-    "slf": "1.x",
-    "slf-debug": "0.x"
+    "slf": "1.x"
   }
 }
