@@ -43,7 +43,7 @@
     "node-uuid": "^1.4.8"
   },
   "peerDependencies": {
-    "slf": "^1.0.0",
-    "slf-debug": "^0.2.0"
+    "slf": "1.x",
+    "slf-debug": "0.x"
   }
 }
