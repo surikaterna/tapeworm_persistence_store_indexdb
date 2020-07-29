@@ -1,6 +1,6 @@
 {
   "name": "tapeworm_persistence_store_indexeddb",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -38,6 +38,7 @@
   "dependencies": {
     "bluebird": "^2.5.2",
     "lodash": "^2.4.1",
-    "node-uuid": "^1.4.8"
+    "node-uuid": "^1.4.8",
+    "slf": "^1.0.2"
   }
 }
